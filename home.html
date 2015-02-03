@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.mobile-1.4.5.min.js"></script>
+<script src="js/Values.js"></script>
+<script src="js/Controller.js"></script>
+<script src="js/HTMLMaker.js"></script>
+<script src="js/Snippets.js"></script>
+<script src="js/ProvaExecucao.js"></script>
+<script src="js/Prova.js"></script>
+<script src="js/App.js"></script>
+</head>
+<body>
+	<div id="home" data-role="page">
+		<div data-role="header" data-position="fixed">
+			<h3 class="html-from-values" appid="appTitleProva"></h3>
+			<span class="html-from-snippet-array" snippet="snippet-btn-sair"></span>
+		</div>
+		<div role="main" class="ui-content">
+			<ul data-role="listview" id="divListaProva" data-split-icon="action"
+				data-split-theme="d" data-inset="true">
+				<!-- Conteudo inserido dinamicamente Prova.js -->
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
