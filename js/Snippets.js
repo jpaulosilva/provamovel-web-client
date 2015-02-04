@@ -34,7 +34,7 @@ var Snippets = {
 				value : HTMLMaker().createTag("a").attr("href", "about.html")
 						.attr("data-transition", "slideup").attr("class",
 								"ui-btn ui-corner-all").attr("style",
-								"width: 100%").content("Sobre NÃ³s")
+								"width: 100%").content(Values.appFooterAbout)
 			},
 			{
 				id : 'snippet-footer-questpes',
@@ -42,7 +42,7 @@ var Snippets = {
 						.attr("href", "questoes.html").attr("data-transition",
 								"slideup")
 						.attr("class", "ui-btn ui-corner-all").attr("style",
-								"width: 100%").content("Questões")
+								"width: 100%").content("Questï¿½es")
 			},
 			{
 				id : 'snippet-btn-voltar',

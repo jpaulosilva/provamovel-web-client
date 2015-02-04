@@ -37,11 +37,11 @@ function getProvaById($id) {
 					"autor" => "Ivan",
 					"questoes" => array (
 							array (
-									"enunciado" => "Quem eh o diretor do filme o hobbit?","tipo"=>1,
+									"enunciado" => "Quem é o diretor do filme o hobbit?","tipo"=>1,
 									"alternativas" => array("Pitter Jackson","Orlando Bloom","Wiliam Bonner","Jorge Lucas")
 							),
 							array (
-									"enunciado" => "Em que pais a serie lost foi filmada?","tipo"=>0 
+									"enunciado" => "Em que país a serie lost foi filmada?","tipo"=>0 
 							),
 							array (
 									"enunciado" => "Quem eh o diretor do filme o Matrix Reload?","tipo"=>1,
@@ -60,11 +60,11 @@ function getProvaById($id) {
 					"autor" => "Ivan Rodrigues",
 					"questoes" => array (
 							array (
-									"enunciado" => "Quem eh o tio do Homem-Aranha?","tipo"=>1,
+									"enunciado" => "Quem é o tio do Homem-Aranha?","tipo"=>1,
 									"alternativas" => array("Tio Bem","Tio Jon","Doende Verde","Jorge Lucas")
 							),
 							array (
-									"enunciado" => "Qual desses nao eh inimigo do Batman","tipo"=>1,
+									"enunciado" => "Qual desses nao é inimigo do Batman","tipo"=>1,
 									"alternativas" => array("Bane","Tio Jon","Coringa","Duas caras")
 							)
 					)

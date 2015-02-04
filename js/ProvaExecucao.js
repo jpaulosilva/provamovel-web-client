@@ -152,7 +152,8 @@ $(document).on("pagebeforecreate", "#responder", function() {
 	try {
 		ProvaExecucaoController.init();
 	} catch (err) {
-		alert("Houve um erro inesperado");
+		//TODO 
+		alert(Values.messageErroServidor);
 		window.location = "index.html";
 	}
 });

@@ -6,11 +6,14 @@
 
 var Values = {
 
-	server : "http://localhost/workspace/prova/serverrest/",
-	appTitle : "Prova Movel",
-	appTitleProva : "Prova Disponiveis",
-	appTitleAbout : "Prova Movel - Sobre Nos",
+	server : "serverrest/",
+	appTitle : "Prova Móvel",
+	appTitleProva : "Prova Disponíveis",
+	appTitleAbout : "Prova Móvel - Sobre",
+	appFooterAbout : "Sobre",
 	mensagemFinalizarSucesso : "Respostas enviada com sucesso!",
+	messageErroServidor:"Houve um erro na comunicação com servidor",
+	messageUsuarioDeveLogar:"Usuario deve estar logado",
 	pages : {},
 
 	init : function() {
@@ -20,11 +23,11 @@ var Values = {
 		});
 
 		$(".text-from-values").each(function() {
-			var id = $(this).attr('appid')
+			var id = $(this).attr('appid');
 			$(this).text(Values[id]);
 		});
 		$(".value-from-values").each(function() {
-			var id = $(this).attr('appid')
+			var id = $(this).attr('appid');
 			$(this).val(Values[id]);
 		});
 	}

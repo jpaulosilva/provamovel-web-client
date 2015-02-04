@@ -1,6 +1,6 @@
 FinalizarController  = {
 		init:function(){
-			// atribui ação ao botão de finalizar
+			// atribui aÃ§Ã£o ao botÃ£o de finalizar
 			$(document).off("click", "#btnFinalizarProva").on("click", "#btnFinalizarProva",
 					FinalizarController.finalizarProva);
 			
@@ -51,7 +51,7 @@ FinalizarController  = {
 
 		},
 		onError : function(e) {
-			alert("Houve um erro na comunicação com servidor");
+			alert(Values.messageErroServidor);
 		},
 };
 

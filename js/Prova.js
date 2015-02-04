@@ -31,7 +31,7 @@ ProvaController.setShowItem(function(item) {
 	$('#tableDadosProva tbody tr:last td:eq(2)').html(item.data);
 	$('#tableDadosProva tbody tr:last td:eq(3)').html(item.questoes.length);
 	ProvaExecucaoController.provaSelecionada = item;
-	
+	$('#iniciarprova').trigger('create');
 	$( "#tableDadosProva" ).table( "rebuild" );
 });
 
@@ -49,7 +49,7 @@ $(document).on("pagebeforecreate", "#home", function() {
 $(document).on("pagebeforecreate", "#iniciarprova", function() {
 	try {
 		if (LoginController.hash === "") {
-			throw "Usuario deve estar logado";
+			throw Values.messageUsuarioDeveLogar;
 		}
 
 	} catch (err) {
