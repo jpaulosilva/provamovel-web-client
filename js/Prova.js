@@ -26,6 +26,7 @@ ProvaController.setShowScreenList(function(items) {
 });
 
 ProvaController.setShowItem(function(item) {
+	
 	$('#tableDadosProva tbody  tr:last td:eq(0)').html(item.titulo);
 	$('#tableDadosProva tbody tr:last td:eq(1)').html(item.autor);
 	$('#tableDadosProva tbody tr:last td:eq(2)').html(item.data);
@@ -51,6 +52,7 @@ $(document).on("pagebeforecreate", "#iniciarprova", function() {
 		if (LoginController.hash === "") {
 			throw Values.messageUsuarioDeveLogar;
 		}
+		ProvaController.reloadSelectedItem()
 
 	} catch (err) {
 		window.location = "index.html";

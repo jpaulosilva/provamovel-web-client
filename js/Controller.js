@@ -31,6 +31,10 @@ Controller = function(urlRequest,linkClass,param,attr) {
 	urlFinal = urlRequest+"/"+id;
 		doRequestGet(onSuccessGetById, onError);
 	}
+	function reloadSelectedItem() { 
+		
+		showItem(item);	
+	}
 	function clickItem() {
 		idSelected = $(this).attr(attr);
 		getById(idSelected);
@@ -87,6 +91,7 @@ Controller = function(urlRequest,linkClass,param,attr) {
 		getAll:getAll,
 		getById:getById,
 		setShowItem:setShowItem,
-		setShowScreenList:setShowScreenList
+		setShowScreenList:setShowScreenList,
+		reloadSelectedItem:reloadSelectedItem
 	};
 };
