@@ -8,7 +8,7 @@ public class ResultadoAlunoController extends Controller {
 		return TODO;
 	}
 	
-	public static Result getResultado() {
+	public static Result getResultado(Integer idProva) {
 		return TODO;
 	}
 }

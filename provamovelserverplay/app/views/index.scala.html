@@ -1,7 +1,21 @@
-@(message: String)
+@(message: String) @main("Prova Movel") {
 
-@main("Welcome to Play") {
+@header()
 
-    @play20.welcome(message, style = "Java")
+<div class="container">
+
+	<h1>@(message)</h1>
+
+<!--<a href="#myModal" role="button" class="btn" data-toggle="modal">Launch
+				demo modal</a>-->
+			
+</div>
+<!-- /container -->
+@modal()
+<script>
+	$(function(){
+
+	});
+</script>
 
 }

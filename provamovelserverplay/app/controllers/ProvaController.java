@@ -12,27 +12,27 @@ public class ProvaController extends Controller {
 		return TODO;
 	}
 
-	public static Result visualizar() {
+	public static Result visualizar(Integer id) {
 		return TODO;
 	}
 
-	public static Result editar() {
+	public static Result editar(Integer id) {
 		return TODO;
 	}
 
-	public static Result atualizar() {
+	public static Result atualizar(Integer id) {
 		return TODO;
 	}
 
-	public static Result excluir() {
+	public static Result excluir(Integer id) {
 		return TODO;
 	}
 	
-	public static Result adicionarAluno() {
+	public static Result adicionarAluno(String email) {
 		return TODO;
 	}
 	
-	public static Result excluirAluno() {
+	public static Result excluirAluno(String email) {
 		return TODO;
 	}
 }
