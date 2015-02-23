@@ -1,0 +1,37 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                          controllers.Aplicaion.index()
+
+# Usuario
+GET     /entrar/                   controllers.UserController.entrar()
+GET     /cadastrar/                controllers.UserController.cadastrar()
+GET     /sair/                     controllers.UserController.sair()
+
+# CRUD Prova
+GET     /prova/salvar/                controllers.ProvaController.salvar()
+GET     /prova/listar/                controllers.ProvaController.listar()
+GET     /prova/:id                    controllers.ProvaController.visualizar()
+GET     /prova/editar/:id             controllers.ProvaController.editar()
+GET     /prova/atualizar/:id          controllers.ProvaController.atualizar()
+GET     /prova/excluir/:id            controllers.ProvaController.excluir()
+GET     /prova/aluno/adicionar/:email  				          controllers.ProvaController.adicionarAluno()
+GET     /prova/aluno/excluir/:email                           controllers.ProvaController.excluirAluno()
+
+#Professor
+GET     /resultado/prova/:idprova                             controllers.ResultadoProfessorController.getAlunosPorProva()
+GET     /resultado/prova/:idprova/aluno/:emailAluno           controllers.ResultadoProfessorController.getResultadoAluno()
+
+
+
+#Aluno
+GET     /meusresultados/                                           controllers.ResultadoAlunoController.meusResultados()
+GET     /meusresultados/:idProva                                   controllers.ResultadoAlunoController.getResultado()
+
+#Responder
+GET     /prova/responder/:idProva                             controllers.RespostaController.responder()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
