@@ -1,0 +1,23 @@
+@(value:String) @main("Prova Movel") {
+
+@header()
+
+<div class="container">
+
+@value
+
+	@helper.form(action = routes.TestController.calcula){
+	
+	<input type="text" name="value" id="value"  value="Cadastrar"/>
+	<input type="submit" value="Cadastrar"/>
+}
+</div>
+<!-- /container -->
+@modal()
+<script>
+	$(function(){
+
+	});
+</script>
+
+}

@@ -1,0 +1,21 @@
+@(form:Form[models.User]) @main("Prova Movel") {
+
+@header()
+
+<div class="container">
+	@helper.form(action = routes.UserController.cadastrar){
+	@helper.inputText(form("email"),'_label->"Email")
+	@helper.inputPassword(form("password"),'_label->"Senha")
+	
+	<input type="submit" value="Cadastrar"/>
+}
+</div>
+<!-- /container -->
+@modal()
+<script>
+	$(function(){
+
+	});
+</script>
+
+}

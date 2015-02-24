@@ -7,18 +7,19 @@ GET     /                          controllers.Application.index()
 
 # Usuario
 GET     /entrar/                   controllers.UserController.entrar()
-GET     /cadastrar/                controllers.UserController.cadastrar()
+GET     /cadastrar/                controllers.UserController.showCadastrar()
+POST     /cadastrar/                controllers.UserController.cadastrar()
 GET     /sair/                     controllers.UserController.sair()
 
 # CRUD Prova
-GET     /prova/salvar/                controllers.ProvaController.salvar()
-GET     /prova/listar/                controllers.ProvaController.listar()
-GET     /prova/:id                    controllers.ProvaController.visualizar(id:Integer)
-GET     /prova/editar/:id             controllers.ProvaController.editar(id:Integer)
-GET     /prova/atualizar/:id          controllers.ProvaController.atualizar(id:Integer)
-GET     /prova/excluir/:id            controllers.ProvaController.excluir(id:Integer)
-GET     /prova/aluno/adicionar/:email  				          controllers.ProvaController.adicionarAluno(email:String)
-GET     /prova/aluno/excluir/:email                           controllers.ProvaController.excluirAluno(email:String)
+GET     /prova/salvar/                	controllers.ProvaController.salvar()
+GET     /prova/listar/                	controllers.ProvaController.listar()
+GET     /prova/:id                    	controllers.ProvaController.visualizar(id:Integer)
+GET     /prova/editar/:id             	controllers.ProvaController.editar(id:Integer)
+GET     /prova/atualizar/:id          	controllers.ProvaController.atualizar(id:Integer)
+GET     /prova/excluir/:id            	controllers.ProvaController.excluir(id:Integer)
+GET     /prova/aluno/adicionar/:email  	controllers.ProvaController.adicionarAluno(email:String)
+GET     /prova/aluno/excluir/:email     controllers.ProvaController.excluirAluno(email:String)
 
 #Professor
 GET     /resultado/prova/:idprova                             controllers.ResultadoProfessorController.getAlunosPorProva(idprova:Integer)
@@ -32,6 +33,11 @@ GET     /meusresultados/:idprova                                   controllers.R
 
 #Responder
 GET     /prova/responder/:idprova                             controllers.RespostaController.responder(idprova:Integer)
+
+#Test
+GET     /test/:value                controllers.TestController.mostra(value:String)
+GET     /test/                		controllers.TestController.mostra(value:String = "Nada")
+POST     /test/                     controllers.TestController.calcula()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
