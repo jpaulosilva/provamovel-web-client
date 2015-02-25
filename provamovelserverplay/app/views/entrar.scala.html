@@ -1,13 +1,13 @@
-@(form:Form[models.User]) @main("Prova Movel") {
+@(form:Form[models.User]) @main("Prova Movel - Entrar") {
 
 @header()
 
 <div class="container">
-	@helper.form(action = routes.UserController.cadastrarAction){
+	@helper.form(action = routes.UserController.entrarAction){
 	@helper.inputText(form("email"),'_label->"Email")
 	@helper.inputPassword(form("password"),'_label->"Senha")
 	
-	<input type="submit" value="Cadastrar"/>
+	<input type="submit" value="Entrar"/>
 }
 </div>
 <!-- /container -->

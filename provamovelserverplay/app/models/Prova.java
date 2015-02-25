@@ -5,17 +5,21 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import play.db.ebean.Model;
 @Entity
 public class Prova extends Model{
 	@Id
 	Long id;
+	
+	@OneToOne(optional=true)
 	User author;
 	
 	
-	@OneToMany(cascade=CascadeType.PERSIST)
+	@ManyToMany(cascade=CascadeType.ALL)
 	List<User> alunos;
 	
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="prova")

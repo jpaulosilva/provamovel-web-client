@@ -12,6 +12,7 @@ create table alternativa (
 
 create table prova (
   id                        bigint auto_increment not null,
+  author_email              varchar(255),
   constraint pk_prova primary key (id))
 ;
 
@@ -39,24 +40,33 @@ create table resposta_prova (
 
 create table user (
   email                     varchar(255) not null,
-  prova_id                  bigint not null,
   password                  varchar(255),
   hash                      varchar(255),
   constraint pk_user primary key (email))
 ;
 
+
+create table prova_user (
+  prova_id                       bigint not null,
+  user_email                     varchar(255) not null,
+  constraint pk_prova_user primary key (prova_id, user_email))
+;
 alter table alternativa add constraint fk_alternativa_questao_1 foreign key (questao_id) references questao (id) on delete restrict on update restrict;
 create index ix_alternativa_questao_1 on alternativa (questao_id);
-alter table questao add constraint fk_questao_prova_2 foreign key (prova_id) references prova (id) on delete restrict on update restrict;
-create index ix_questao_prova_2 on questao (prova_id);
-alter table resposta add constraint fk_resposta_respostaProva_3 foreign key (resposta_prova_id) references resposta_prova (id) on delete restrict on update restrict;
-create index ix_resposta_respostaProva_3 on resposta (resposta_prova_id);
-alter table resposta_prova add constraint fk_resposta_prova_prova_4 foreign key (prova_id) references prova (id) on delete restrict on update restrict;
-create index ix_resposta_prova_prova_4 on resposta_prova (prova_id);
-alter table user add constraint fk_user_prova_5 foreign key (prova_id) references prova (id) on delete restrict on update restrict;
-create index ix_user_prova_5 on user (prova_id);
+alter table prova add constraint fk_prova_author_2 foreign key (author_email) references user (email) on delete restrict on update restrict;
+create index ix_prova_author_2 on prova (author_email);
+alter table questao add constraint fk_questao_prova_3 foreign key (prova_id) references prova (id) on delete restrict on update restrict;
+create index ix_questao_prova_3 on questao (prova_id);
+alter table resposta add constraint fk_resposta_respostaProva_4 foreign key (resposta_prova_id) references resposta_prova (id) on delete restrict on update restrict;
+create index ix_resposta_respostaProva_4 on resposta (resposta_prova_id);
+alter table resposta_prova add constraint fk_resposta_prova_prova_5 foreign key (prova_id) references prova (id) on delete restrict on update restrict;
+create index ix_resposta_prova_prova_5 on resposta_prova (prova_id);
 
 
+
+alter table prova_user add constraint fk_prova_user_prova_01 foreign key (prova_id) references prova (id) on delete restrict on update restrict;
+
+alter table prova_user add constraint fk_prova_user_user_02 foreign key (user_email) references user (email) on delete restrict on update restrict;
 
 # --- !Downs
 
@@ -65,6 +75,8 @@ SET FOREIGN_KEY_CHECKS=0;
 drop table alternativa;
 
 drop table prova;
+
+drop table prova_user;
 
 drop table questao;
 

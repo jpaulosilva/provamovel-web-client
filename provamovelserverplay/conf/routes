@@ -7,8 +7,9 @@ GET     /                          controllers.Application.index()
 
 # Usuario
 GET     /entrar/                   controllers.UserController.entrar()
-GET     /cadastrar/                controllers.UserController.showCadastrar()
-POST     /cadastrar/                controllers.UserController.cadastrar()
+POST    /entrar/                   controllers.UserController.entrarAction()
+GET     /cadastrar/                controllers.UserController.cadastrar()
+POST    /cadastrar/                controllers.UserController.cadastrarAction()
 GET     /sair/                     controllers.UserController.sair()
 
 # CRUD Prova

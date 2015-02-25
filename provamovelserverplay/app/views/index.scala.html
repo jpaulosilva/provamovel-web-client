@@ -1,19 +1,20 @@
-@(message: String) @main("Prova Movel") {
+@(titulo: String, mensage:String ,descricao:String) @main("Prova Móvel - "+titulo) {
 
 @header()
 
 <div class="container">
 
-	<h1>@(message)</h1>
+	<h1>@(mensage)</h1>
+	<div>@(descricao)</div>
 
-<!--<a href="#myModal" role="button" class="btn" data-toggle="modal">Launch
+	<!--<a href="#myModal" role="button" class="btn" data-toggle="modal">Launch
 				demo modal</a>-->
-			
+
 </div>
 <!-- /container -->
 @modal()
 <script>
-	$(function(){
+	$(function() {
 
 	});
 </script>
