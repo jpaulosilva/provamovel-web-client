@@ -1,0 +1,25 @@
+@(provas:List[Prova]) @main("Prova Móvel") {
+
+@header()
+
+<div class="container">
+
+@if(provas.isEmpty()){
+    <h2>Sem Provas</h2>
+} else {
+    <ul>
+        @for(prova <- provas) {
+            <li>@prova.getTitulo()</li>
+        }
+    </ul>
+}
+</div>
+<!-- /container -->
+@modal()
+<script>
+	$(function() {
+
+	});
+</script>
+
+}

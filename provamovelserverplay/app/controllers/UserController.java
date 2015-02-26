@@ -61,6 +61,9 @@ public class UserController extends Controller {
 	}
 
 	public static Result sair() {
-		return TODO;
+		
+		 session().clear();
+		
+		return redirect(routes.Application.index());
 	}
 }

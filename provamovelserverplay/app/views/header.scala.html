@@ -15,9 +15,16 @@ body {
 			<a class="brand" href="/">Prova Móvel</a>
 			<div class="nav-collapse collapse">
 				<ul class="nav">
-					<li class="active"><a href="/entrar/">Entrar</a></li>
-					<li><a href="/cadastrar/">Cadastrar-se</a></li>
-				</ul>
+				@if(session.get("login") == null){
+				<li><a href="/entrar/">Entrar</a></li>
+				<li><a href="/cadastrar/">Cadastrar-se</a></li>
+				}else {
+				<li><a href="/prova/listar/">Minhas Provas</a></li>
+				<li><a href="/sair/">Cadastrar Nova Prova</a></li>
+				<li><a href="/sair/">Sair</a></li>
+				}
+					
+			</ul>
 			</div>
 
 		</div>
