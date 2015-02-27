@@ -1,5 +1,6 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -25,7 +26,7 @@ public class Prova extends Model {
 	List<User> alunos;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "prova")
-	List<Questao> questoes;
+	List<Questao> questoes ;
 	
 	public static Finder<Long, Prova> find = new Finder<Long, Prova>(Long.class, Prova.class);
 

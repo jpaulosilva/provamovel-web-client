@@ -11,11 +11,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import play.db.ebean.Model;
+import play.db.ebean.Model.Finder;
 @Entity
 public class Questao extends Model{
 	@Id
 	Long id;
 	String titulo;
+	
+	public static Finder<Long, Questao> find = new Finder<Long, Questao>(Long.class, Questao.class);
 	
 	@ManyToOne(cascade=CascadeType.ALL)
 	Prova prova;

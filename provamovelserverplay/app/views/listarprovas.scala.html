@@ -3,15 +3,44 @@
 @header()
 
 <div class="container">
-
+<a href="@routes.ProvaController.salvar()">Nova Prova</a>
 @if(provas.isEmpty()){
-    <h2>Sem Provas</h2>
+    <h4>Sem Provas</h4>
 } else {
-    <ul>
-        @for(prova <- provas) {
-            <li>@prova.getTitulo()</li>
-        }
-    </ul>
+<table class="table table-bordered">
+	<thead>
+
+		<tr>
+			<th>Título</th>
+			<th>Questões</th>
+			<th>Alunos</th>
+			<th>Editar</th>
+			<th>Excluir</th>
+		</tr>
+
+	</thead>
+	<tbody>
+	 @for(prova <- provas) {
+	 
+	 <tr>
+			<td>@prova.getTitulo()</td>
+			<td>@prova.getAlunos().size()</td>
+			<td>@prova.getQuestoes().size()</td>
+			<td>@prova.getId()</td>
+			<td>@prova.getId()</td>
+		</tr>
+			}
+	
+	 
+           
+        
+	
+	
+	</tbody>
+	</table>
+ 
+       
+    
 }
 </div>
 <!-- /container -->

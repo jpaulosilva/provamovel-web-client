@@ -1,17 +1,63 @@
 package controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import models.Prova;
+import models.Questao;
 import models.User;
+import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import views.html.formprova;
+import views.html.formprovaquestao;
 import views.html.listarprovas;
 
 public class ProvaController extends Controller {
+
+	static Form<Prova> provaForm = new Form(Prova.class);
+	static Form<Questao> questaoForm = new Form(Questao.class);
+
 	public static Result salvar() {
-		return TODO;
+		return ok(formprova.render(provaForm));
+	}
+
+	public static Result salvarAction() {
+		Form<Prova> form = provaForm.bindFromRequest(request());
+		if (!form.hasErrors()) {
+			try {
+				Prova p = form.get();
+				p.setAuthor(User.find.byId(session("login")));
+				form.get().save();
+				return redirect(routes.ProvaController.editar(p.getId()));
+
+			} catch (Exception e) {
+				return badRequest(formprova.render(provaForm));
+			}
+			
+		} else {
+			return badRequest(formprova.render(provaForm));
+		}
+	}
+	
+	public static Result addQuestaoAction(Long idProva){
+		Prova p = Prova.find.byId(idProva);
+		
+		Form<Questao> form = questaoForm.bindFromRequest(request());
+		if (!form.hasErrors()) {
+			try {
+				Questao q = form.get();
+				q.setProva(p);
+				q.save();
+				return redirect(routes.ProvaController.editar(p.getId()));
+
+			} catch (Exception e) {
+				return badRequest(formprova.render(provaForm));
+			}
+			
+		} else {
+			return badRequest(formprova.render(provaForm));
+		}
+		
 	}
 
 	public static Result listar() {
@@ -23,22 +69,29 @@ public class ProvaController extends Controller {
 		return TODO;
 	}
 
-	public static Result editar(Integer id) {
-		return TODO;
+	public static Result editar(Long id) {
+		Prova p = Prova.find.byId(id);
+		if(p==null){
+    		return redirect(routes.ProvaController.listar());
+    	}
+    	else{
+		Form<Prova> form = provaForm.fill(p); 
+		return ok(formprovaquestao.render(p, form));
+		}
 	}
 
-	public static Result atualizar(Integer id) {
+	public static Result atualizarAction(Long id) {
 		return TODO;
 	}
 
 	public static Result excluir(Integer id) {
 		return TODO;
 	}
-	
+
 	public static Result adicionarAluno(String email) {
 		return TODO;
 	}
-	
+
 	public static Result excluirAluno(String email) {
 		return TODO;
 	}

@@ -1,0 +1,67 @@
+@(prova:models.Prova,form:Form[models.Prova]) @main("Prova Movel") {
+
+@header()
+<style>
+.conteinerform {
+	margin: 1pxl;
+}
+</style>
+
+<div class="container">
+	<div class="conteinerform">
+		@helper.form(action =
+		routes.ProvaController.atualizarAction(prova.getId())){
+		@helper.inputText(form("titulo"),'_label->"Titulo") <input
+			type="submit" class="btn btn-success" value="Atualizar" /> }
+	</div>
+
+	@if(!prova.getQuestoes().isEmpty()){
+
+	<table class="table table-bordered">
+		<thead>
+
+			<tr>
+				<th>Título</th>
+				<th>Tipo</th>
+				<th>Excluir</th>
+			</tr>
+
+		</thead>
+		<tbody>
+			@for(questao <- prova.getQuestoes()) {
+
+			<tr>
+				<td>@questao.getTitulo()</td>
+				<td>@questao.getTipo()</td>
+				<td>@questao.getId()</td>
+			</tr>
+			}
+		</tbody>
+	</table>
+	}
+	<div class="conteinerform">
+		@helper.form(action =
+		routes.ProvaController.addQuestaoAction(prova.getId()),'class -> "form-inline"){
+
+		<label	for="titulo">Título:</label>
+			<input type="text" name="titulo" id="titulo"/>
+		<label	for="titulo">Resposta:</label>
+			<input type="text" name="resposta" id="resposta"/>
+		<label	for="tipo">Tipo:</label> 
+			<select id="tipo" name="tipo">
+			@for(cType <- TipoQuestao.values()){
+			<option value="@cType.name()">@cType.name()</option> }
+		</select>
+		<input type="submit" class="btn btn-success" value="Adicionar" />
+		}
+	</div>
+</div>
+<!-- /container -->
+@modal()
+<script>
+	$(function() {
+
+	});
+</script>
+
+}
