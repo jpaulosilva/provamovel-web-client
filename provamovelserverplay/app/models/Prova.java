@@ -1,6 +1,6 @@
 package models;
 
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,14 +10,18 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import play.data.format.Formats;
 import play.db.ebean.Model;
-import play.db.ebean.Model.Finder;
 
 @Entity
 public class Prova extends Model {
 	@Id
 	Long id;
+
 	String titulo;
+
+	@Formats.DateTime(pattern = "dd/MM/yyyy")
+	Date criacao;
 
 	@OneToOne(optional = true)
 	User author;
@@ -26,10 +30,10 @@ public class Prova extends Model {
 	List<User> alunos;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "prova")
-	List<Questao> questoes ;
-	
-	public static Finder<Long, Prova> find = new Finder<Long, Prova>(Long.class, Prova.class);
+	List<Questao> questoes;
 
+	public static Finder<Long, Prova> find = new Finder<Long, Prova>(
+			Long.class, Prova.class);
 
 	public Long getId() {
 		return id;
@@ -69,6 +73,14 @@ public class Prova extends Model {
 
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
+	}
+
+	public Date getCriacao() {
+		return criacao;
+	}
+
+	public void setCriacao(Date criacao) {
+		this.criacao = criacao;
 	}
 
 }

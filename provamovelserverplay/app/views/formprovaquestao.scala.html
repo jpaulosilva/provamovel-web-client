@@ -5,6 +5,10 @@
 .conteinerform {
 	margin: 1pxl;
 }
+
+#hiddenThings {
+	display: none;
+}
 </style>
 
 <div class="container">
@@ -41,25 +45,82 @@
 	}
 	<div class="conteinerform">
 		@helper.form(action =
-		routes.ProvaController.addQuestaoAction(prova.getId()),'class -> "form-inline"){
-
-		<label	for="titulo">Título:</label>
-			<input type="text" name="titulo" id="titulo"/>
-		<label	for="titulo">Resposta:</label>
-			<input type="text" name="resposta" id="resposta"/>
-		<label	for="tipo">Tipo:</label> 
-			<select id="tipo" name="tipo">
-			@for(cType <- TipoQuestao.values()){
+		routes.ProvaController.addQuestaoAction(prova.getId()),'class ->
+		"form-inline"){ <label for="titulo">Título:</label> <input type="text"
+			name="titulo" id="titulo" /> <label for="tipo">Tipo:</label> <select
+			id="tipo" name="tipo"> @for(cType <- TipoQuestao.values()){
 			<option value="@cType.name()">@cType.name()</option> }
-		</select>
-		<input type="submit" class="btn btn-success" value="Adicionar" />
+		</select> 
+
+		<div id="conteinerRespostaAberta">
+			<label for="resposta">Resposta:</label>
+			<input type="text" name="resposta" id="resposta" />
+		</div>
+		<div id="conteinerRespostaFechada">
+		
+			<div id="conteinerAlternativas">
+			<h5 >Alternativas</h5>
+			
+			</div>
+			<a id="adicionarAlternativa" href="#" class="btn btn-success">+</a>
+			
+		</div>
+		<input type="submit" class="btn btn-success" value="Adicionar" /> 
+		
 		}
 	</div>
+	
+	<div id="hiddenThings">
+		<div id="altContent">
+			<div>
+				<input type="text" name="alt[]" />
+			</div>
+		</div>
+	</div>
+
 </div>
 <!-- /container -->
 @modal()
 <script>
+	ProvaController = {
+		mostraQuestaoporTipo : function(valor) {
+			
+			switch (valor) {
+			case "aberta": // aberto
+				$("#conteinerRespostaAberta").show();
+				$("#conteinerRespostaFechada").css("display","none");
+				break;
+			case "fechada": // fechada
+				$("#conteinerRespostaAberta").css("display","none");
+				$("#conteinerRespostaFechada").show();
+				break;
+			}
+
+		},
+		addCampoAlternativa : function(count) {
+			var content = $("#altContent").html()
+			$("#conteinerAlternativas").append("("+count+")"+content);
+			
+		}
+
+	};
+
 	$(function() {
+
+		$("#conteinerRespostaAberta").show();
+		$("#conteinerRespostaFechada").css("display","none");
+
+		$("#tipo").change(function(){
+			var value = $(this).val();
+			
+			ProvaController.mostraQuestaoporTipo(value);
+		});
+
+		$("#adicionarAlternativa").click(function(event) {
+			 event.preventDefault();
+			 var count = $("#conteinerAlternativas input").length+1;
+			ProvaController.addCampoAlternativa(count);
+		});
 
 	});
 </script>

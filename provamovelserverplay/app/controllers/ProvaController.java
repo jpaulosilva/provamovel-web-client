@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.Date;
 import java.util.List;
 
 import models.Prova;
@@ -27,6 +28,7 @@ public class ProvaController extends Controller {
 			try {
 				Prova p = form.get();
 				p.setAuthor(User.find.byId(session("login")));
+				p.setCriacao(new Date());
 				form.get().save();
 				return redirect(routes.ProvaController.editar(p.getId()));
 

@@ -13,6 +13,7 @@ create table alternativa (
 create table prova (
   id                        bigint auto_increment not null,
   titulo                    varchar(255),
+  criacao                   datetime,
   author_email              varchar(255),
   constraint pk_prova primary key (id))
 ;

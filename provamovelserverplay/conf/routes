@@ -31,8 +31,6 @@ GET     /prova/aluno/excluir/:email     controllers.ProvaController.excluirAluno
 GET     /resultado/prova/:idprova                             controllers.ResultadoProfessorController.getAlunosPorProva(idprova:Integer)
 GET     /resultado/prova/:idprova/aluno/:emailAluno           controllers.ResultadoProfessorController.getResultadoAluno(idprova:Integer,emailAluno:String)
 
-
-
 #Aluno
 GET     /meusresultados/                                           controllers.ResultadoAlunoController.meusResultados()
 GET     /meusresultados/:idprova                                   controllers.ResultadoAlunoController.getResultado(idprova:Integer)
@@ -40,10 +38,6 @@ GET     /meusresultados/:idprova                                   controllers.R
 #Responder
 GET     /prova/responder/:idprova                             controllers.RespostaController.responder(idprova:Integer)
 
-#Test
-GET     /test/:value                controllers.TestController.mostra(value:String)
-GET     /test/                		controllers.TestController.mostra(value:String = "Nada")
-POST     /test/                     controllers.TestController.calcula()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
