@@ -26,8 +26,12 @@
 			<td>@prova.getTitulo()</td>
 			<td>@prova.getAlunos().size()</td>
 			<td>@prova.getQuestoes().size()</td>
-			<td>@prova.getId()</td>
-			<td>@prova.getId()</td>
+			<td><a href="@routes.ProvaController.editar(prova.getId())">Editar</a></td>
+			<td>
+			@helper.form(action = routes.ProvaController.excluir(prova.getId())){
+			<input type="submit" value="Excluir"/>		
+			}
+			</td>
 		</tr>
 			}
 	

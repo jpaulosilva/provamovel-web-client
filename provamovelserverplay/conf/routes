@@ -4,6 +4,7 @@
 
 # Home page
 GET     /                          controllers.Application.index()
+GET     /:s                        controllers.Application.debug(s:String)
 
 # Usuario
 GET     /entrar/                   controllers.UserController.entrar()
@@ -23,7 +24,7 @@ GET     /prova/editar/:id             	controllers.ProvaController.editar(id:Lon
 
 POST     /prova/atualizar/:id          	controllers.ProvaController.atualizarAction(id:Long)
 
-GET     /prova/excluir/:id            	controllers.ProvaController.excluir(id:Integer)
+POST    /prova/excluir/:id            	controllers.ProvaController.excluir(id:Long)
 GET     /prova/aluno/adicionar/:email  	controllers.ProvaController.adicionarAluno(email:String)
 GET     /prova/aluno/excluir/:email     controllers.ProvaController.excluirAluno(email:String)
 

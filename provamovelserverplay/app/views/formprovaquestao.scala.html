@@ -73,7 +73,7 @@
 	<div id="hiddenThings">
 		<div id="altContent">
 			<div>
-				<input type="text" name="alt[]" />
+				<input id="alt" type="text" name="alt" />
 			</div>
 		</div>
 	</div>
@@ -98,8 +98,8 @@
 
 		},
 		addCampoAlternativa : function(count) {
-			var content = $("#altContent").html()
-			$("#conteinerAlternativas").append("("+count+")"+content);
+			
+			$("#conteinerAlternativas").append("("+count+")"+"<input  type='text' id='alt"+count+"' name='alt"+count+"' />");
 			
 		}
 
