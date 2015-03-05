@@ -2,7 +2,14 @@
 
 @header()
 
+
+
 <div class="container">
+@if(form.hasGlobalErrors) {
+    <p class="error">
+        @form.globalError.message
+    </p>
+}
 	@helper.form(action = routes.UserController.cadastrarAction){
 	@helper.inputText(form("email"),'_label->"Email")
 	@helper.inputPassword(form("password"),'_label->"Senha")

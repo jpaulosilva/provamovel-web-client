@@ -1,4 +1,4 @@
-@(prova:models.Prova,form:Form[models.Prova]) @main("Prova Movel") {
+@(prova:models.Prova,form:Form[models.Prova],questaoForm:Form[models.Questao]) @main("Prova Movel") {
 
 @header()
 <style>
@@ -13,6 +13,11 @@
 
 <div class="container">
 	<div class="conteinerform">
+	@if(form.hasGlobalErrors) {
+    <p class="error">
+        @form.globalError.message
+    </p>
+}
 		@helper.form(action =
 		routes.ProvaController.atualizarAction(prova.getId())){
 		@helper.inputText(form("titulo"),'_label->"Titulo") <input
@@ -44,6 +49,11 @@
 	</table>
 	}
 	<div class="conteinerform">
+		@if(questaoForm.hasGlobalErrors) {
+    	<p class="error">
+        @questaoForm.globalError.message
+   		 </p>
+	}
 		@helper.form(action =
 		routes.ProvaController.addQuestaoAction(prova.getId()),'class ->
 		"form-inline"){ 
@@ -122,7 +132,7 @@
 				
 				content += "<td>";
 				
-				content+="<input type='radio' name='correta' value='"+count+"'/>";
+				content+="<input type='radio' name='corretaIndex' value='"+count+"'/>";
 				
 				content += "</td>";
 				

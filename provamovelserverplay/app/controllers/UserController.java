@@ -2,6 +2,8 @@ package controllers;
 
 import java.util.Date;
 
+import javax.persistence.PersistenceException;
+
 import models.User;
 import play.data.Form;
 import play.mvc.Controller;
@@ -22,9 +24,11 @@ public class UserController extends Controller {
 			User userLogin = form.get();
 			User busca = User.find.byId(userLogin.getEmail());
 			if(busca == null){
+				form.reject("email","Usuário não encontrado");
 				return badRequest(entrar.render(form));
 			}else{
 				if(!busca.getPassword().equals(userLogin.getPassword())){
+					form.reject("password","Senha Inválida");
 					return badRequest(entrar.render(form));	
 				}else{
 					Date d = new Date();
@@ -47,7 +51,12 @@ public class UserController extends Controller {
 
         Form<User> form = userForm.bindFromRequest(request());
         if (!form.hasErrors()) {
-                form.get().save();
+                try{
+        		form.get().save();
+                }catch(PersistenceException e){
+                	form.reject("Usuário já é cadastrado");
+                	return badRequest(cadastrar.render(form));
+                }
                 return redirect(routes.UserController.entrar());
         } else {
                 return badRequest(cadastrar.render(form));

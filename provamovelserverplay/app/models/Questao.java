@@ -13,24 +13,25 @@ import javax.persistence.OneToOne;
 
 import play.db.ebean.Model;
 import play.db.ebean.Model.Finder;
+
 @Entity
-public class Questao extends Model{
+public class Questao extends Model {
 	@Id
 	Long id;
 	String titulo;
-	
-	@OneToOne(optional = true)
-	Alternativa correta;
-	
-	public static Finder<Long, Questao> find = new Finder<Long, Questao>(Long.class, Questao.class);
-	
-	@ManyToOne(cascade=CascadeType.ALL)
+	String respostaAberta;
+	Long corretaIndex;
+
+	public static Finder<Long, Questao> find = new Finder<Long, Questao>(
+			Long.class, Questao.class);
+
+	@ManyToOne(cascade = CascadeType.ALL)
 	Prova prova;
-	
-	@Enumerated(value=EnumType.STRING)
+
+	@Enumerated(value = EnumType.STRING)
 	TipoQuestao tipo;
-	
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="questao")
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "questao")
 	List<Alternativa> alternativas;
 
 	public Long getId() {
@@ -73,14 +74,20 @@ public class Questao extends Model{
 		this.alternativas = alternativas;
 	}
 
-	public Alternativa getCorreta() {
-		return correta;
+	public String getRespostaAberta() {
+		return respostaAberta;
 	}
 
-	public void setCorreta(Alternativa correta) {
-		this.correta = correta;
+	public void setRespostaAberta(String respostaAberta) {
+		this.respostaAberta = respostaAberta;
 	}
-	
-	
-	
+
+	public Long getCorretaIndex() {
+		return corretaIndex;
+	}
+
+	public void setCorretaIndex(Long corretaIndex) {
+		this.corretaIndex = corretaIndex;
+	}
+
 }

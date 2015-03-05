@@ -61,14 +61,9 @@ public class ProvaController extends Controller {
 						if (values.get("alt" + i) != null) {
 							Alternativa a = new Alternativa();
 							a.setTitulo((String) values.get("alt" + i));
+							a.setIndice((long)i);
 							q.getAlternativas().add(a);
-							
-							Integer correta = Integer.parseInt((String) values
-									.get("correta"));
-							
-							if(i==correta){
-								q.setCorreta(a);
-							}
+
 						}
 					}
 
@@ -85,7 +80,9 @@ public class ProvaController extends Controller {
 			}
 
 		} else {
-			return redirect(routes.ProvaController.listar());
+			// return redirect(routes.ProvaController.editar(p.getId()));
+			return redirect(routes.Application.debug(form.errorsAsJson()
+					.toString()));
 		}
 
 	}
@@ -105,12 +102,23 @@ public class ProvaController extends Controller {
 			return redirect(routes.ProvaController.listar());
 		} else {
 			Form<Prova> form = provaForm.fill(p);
-			return ok(formprovaquestao.render(p, form));
+			return ok(formprovaquestao.render(p, form, questaoForm));
 		}
 	}
 
 	public static Result atualizarAction(Long id) {
-		return TODO;
+		Form<Prova> form = provaForm.bindFromRequest(request());
+
+		Prova p = Prova.find.byId(id);
+
+		if (!form.hasErrors()) {
+			form.get().update(id);
+
+			return redirect(routes.ProvaController.listar());
+		} else {
+			return badRequest(formprovaquestao
+					.render(p, provaForm, questaoForm));
+		}
 	}
 
 	public static Result excluir(Long id) {

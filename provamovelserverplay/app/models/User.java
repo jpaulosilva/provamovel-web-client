@@ -3,6 +3,8 @@ package models;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import play.data.validation.Constraints.*;
 import play.db.ebean.Model;
 
@@ -10,6 +12,8 @@ import play.db.ebean.Model;
 public class User extends Model{
 @Id
 @Email
+@Required
+@NotBlank
 String email;
 
 @Required

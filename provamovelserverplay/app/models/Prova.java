@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import play.data.format.Formats;
+import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
 
 @Entity
@@ -18,6 +19,7 @@ public class Prova extends Model {
 	@Id
 	Long id;
 
+	@Required
 	String titulo;
 
 	@Formats.DateTime(pattern = "dd/MM/yyyy")
@@ -82,5 +84,7 @@ public class Prova extends Model {
 	public void setCriacao(Date criacao) {
 		this.criacao = criacao;
 	}
+	
+	
 
 }
