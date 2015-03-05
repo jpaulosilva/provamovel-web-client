@@ -34,7 +34,7 @@ public class UserController extends Controller {
 					session("login",userLogin.getEmail());
 					session("hash",userLogin.getHash());
 					
-					return redirect(routes.Application.index());
+					return redirect(routes.ProvaController.listar());
 				}
 			}
 				

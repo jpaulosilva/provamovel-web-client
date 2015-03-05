@@ -14,7 +14,6 @@ POST    /cadastrar/                controllers.UserController.cadastrarAction()
 GET     /sair/                     controllers.UserController.sair()
 
 # CRUD Prova
-GET     /prova/salvar/                	controllers.ProvaController.salvar()
 POST    /prova/salvar/                	controllers.ProvaController.salvarAction()
 POST    /prova/questao/:idProva         controllers.ProvaController.addQuestaoAction(idProva : Long)
 GET     /prova/listar/                	controllers.ProvaController.listar()

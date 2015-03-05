@@ -1,10 +1,11 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import models.Alternativa;
 import models.Prova;
 import models.Questao;
 import models.TipoQuestao;
@@ -13,7 +14,6 @@ import play.data.DynamicForm;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.formprova;
 import views.html.formprovaquestao;
 import views.html.listarprovas;
 
@@ -21,10 +21,6 @@ public class ProvaController extends Controller {
 
 	static Form<Prova> provaForm = new Form(Prova.class);
 	static Form<Questao> questaoForm = new Form(Questao.class);
-
-	public static Result salvar() {
-		return ok(formprova.render(provaForm));
-	}
 
 	public static Result salvarAction() {
 		Form<Prova> form = provaForm.bindFromRequest(request());
@@ -37,11 +33,11 @@ public class ProvaController extends Controller {
 				return redirect(routes.ProvaController.editar(p.getId()));
 
 			} catch (Exception e) {
-				return badRequest(formprova.render(provaForm));
+				return redirect(routes.ProvaController.listar());
 			}
 
 		} else {
-			return badRequest(formprova.render(provaForm));
+			return redirect(routes.ProvaController.listar());
 		}
 	}
 
@@ -55,11 +51,29 @@ public class ProvaController extends Controller {
 				q.setProva(p);
 
 				if (q.getTipo() == TipoQuestao.fechada) {
-					 DynamicForm requestData = form.form().bindFromRequest();
-					 HashMap values = (HashMap) requestData.get().getData();
-					 
+					DynamicForm requestData = form.form().bindFromRequest();
+					HashMap values = (HashMap) requestData.get().getData();
+					q.setAlternativas(new ArrayList<Alternativa>());
 
-					return redirect(routes.Application.debug(values.toString()));
+					Integer count = Integer.parseInt((String) values
+							.get("count"));
+					for (int i = 1; i <= count; i++) {
+						if (values.get("alt" + i) != null) {
+							Alternativa a = new Alternativa();
+							a.setTitulo((String) values.get("alt" + i));
+							q.getAlternativas().add(a);
+							
+							Integer correta = Integer.parseInt((String) values
+									.get("correta"));
+							
+							if(i==correta){
+								q.setCorreta(a);
+							}
+						}
+					}
+
+					// return
+					// redirect(routes.Application.debug(values.toString()));
 				}
 
 				q.save();
@@ -71,14 +85,14 @@ public class ProvaController extends Controller {
 			}
 
 		} else {
-			return badRequest(formprova.render(provaForm));
+			return redirect(routes.ProvaController.listar());
 		}
 
 	}
 
 	public static Result listar() {
 		List<Prova> provas = Prova.find.all();
-		return ok(listarprovas.render(provas));
+		return ok(listarprovas.render(provaForm, provas));
 	}
 
 	public static Result visualizar(Integer id) {

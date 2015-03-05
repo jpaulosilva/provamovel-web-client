@@ -9,6 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import play.db.ebean.Model;
 import play.db.ebean.Model.Finder;
@@ -17,6 +18,9 @@ public class Questao extends Model{
 	@Id
 	Long id;
 	String titulo;
+	
+	@OneToOne(optional = true)
+	Alternativa correta;
 	
 	public static Finder<Long, Questao> find = new Finder<Long, Questao>(Long.class, Questao.class);
 	
@@ -68,6 +72,15 @@ public class Questao extends Model{
 	public void setAlternativas(List<Alternativa> alternativas) {
 		this.alternativas = alternativas;
 	}
+
+	public Alternativa getCorreta() {
+		return correta;
+	}
+
+	public void setCorreta(Alternativa correta) {
+		this.correta = correta;
+	}
+	
 	
 	
 }

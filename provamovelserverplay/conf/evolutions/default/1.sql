@@ -21,6 +21,7 @@ create table prova (
 create table questao (
   id                        bigint auto_increment not null,
   titulo                    varchar(255),
+  correta_id                bigint,
   prova_id                  bigint,
   tipo                      varchar(7),
   constraint ck_questao_tipo check (tipo in ('aberta','fechada')),
@@ -57,12 +58,14 @@ alter table alternativa add constraint fk_alternativa_questao_1 foreign key (que
 create index ix_alternativa_questao_1 on alternativa (questao_id);
 alter table prova add constraint fk_prova_author_2 foreign key (author_email) references user (email) on delete restrict on update restrict;
 create index ix_prova_author_2 on prova (author_email);
-alter table questao add constraint fk_questao_prova_3 foreign key (prova_id) references prova (id) on delete restrict on update restrict;
-create index ix_questao_prova_3 on questao (prova_id);
-alter table resposta add constraint fk_resposta_respostaProva_4 foreign key (resposta_prova_id) references resposta_prova (id) on delete restrict on update restrict;
-create index ix_resposta_respostaProva_4 on resposta (resposta_prova_id);
-alter table resposta_prova add constraint fk_resposta_prova_prova_5 foreign key (prova_id) references prova (id) on delete restrict on update restrict;
-create index ix_resposta_prova_prova_5 on resposta_prova (prova_id);
+alter table questao add constraint fk_questao_correta_3 foreign key (correta_id) references alternativa (id) on delete restrict on update restrict;
+create index ix_questao_correta_3 on questao (correta_id);
+alter table questao add constraint fk_questao_prova_4 foreign key (prova_id) references prova (id) on delete restrict on update restrict;
+create index ix_questao_prova_4 on questao (prova_id);
+alter table resposta add constraint fk_resposta_respostaProva_5 foreign key (resposta_prova_id) references resposta_prova (id) on delete restrict on update restrict;
+create index ix_resposta_respostaProva_5 on resposta (resposta_prova_id);
+alter table resposta_prova add constraint fk_resposta_prova_prova_6 foreign key (prova_id) references prova (id) on delete restrict on update restrict;
+create index ix_resposta_prova_prova_6 on resposta_prova (prova_id);
 
 
 

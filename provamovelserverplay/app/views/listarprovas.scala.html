@@ -1,9 +1,15 @@
-@(provas:List[Prova]) @main("Prova Móvel") {
+@(form:Form[models.Prova],provas:List[Prova]) @main("Prova Móvel") {
 
 @header()
 
 <div class="container">
-<a href="@routes.ProvaController.salvar()">Nova Prova</a>
+
+@helper.form(action = routes.ProvaController.salvarAction){
+	@helper.inputText(form("titulo"),'_label->"Titulo")
+	
+	<input type="submit" class="btn btn-success" value="Nova Prova"/>
+}
+
 @if(provas.isEmpty()){
     <h4>Sem Provas</h4>
 } else {
@@ -12,8 +18,9 @@
 
 		<tr>
 			<th>Título</th>
-			<th>Questões</th>
 			<th>Alunos</th>
+			<th>Questões</th>
+			<th>Adicionar Alunos</th>
 			<th>Editar</th>
 			<th>Excluir</th>
 		</tr>
@@ -27,6 +34,7 @@
 			<td>@prova.getAlunos().size()</td>
 			<td>@prova.getQuestoes().size()</td>
 			<td><a href="@routes.ProvaController.editar(prova.getId())">Editar</a></td>
+			<td><a href="@routes.ProvaController.editar(prova.getId())">Adicionar</a></td>
 			<td>
 			@helper.form(action = routes.ProvaController.excluir(prova.getId())){
 			<input type="submit" value="Excluir"/>		

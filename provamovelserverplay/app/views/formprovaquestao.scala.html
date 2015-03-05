@@ -46,21 +46,40 @@
 	<div class="conteinerform">
 		@helper.form(action =
 		routes.ProvaController.addQuestaoAction(prova.getId()),'class ->
-		"form-inline"){ <label for="titulo">Título:</label> <input type="text"
-			name="titulo" id="titulo" /> <label for="tipo">Tipo:</label> <select
-			id="tipo" name="tipo"> @for(cType <- TipoQuestao.values()){
-			<option value="@cType.name()">@cType.name()</option> }
-		</select> 
+		"form-inline"){ 
+		
+		<label for="titulo">Título:</label>
+		 <textarea type="text" 	name="titulo" id="titulo" ></textarea> <br/>
+		 <label for="tipo">Tipo:</label>
+		  <select 	id="tipo" name="tipo">
+		  	 @for(cType <- TipoQuestao.values()){
+				<option value="@cType.name()">@cType.name()</option> 
+			 }
+			</select> 
+			<br/>
 
 		<div id="conteinerRespostaAberta">
 			<label for="resposta">Resposta:</label>
-			<input type="text" name="resposta" id="resposta" />
+			<textarea type="text" name="resposta" id="resposta" ></textarea>
 		</div>
 		<div id="conteinerRespostaFechada">
-		
+		<input type = "hidden" id="count" value="0" name="count"/>
 			<div id="conteinerAlternativas">
 			<h5 >Alternativas</h5>
-			
+<table class="table table-bordered" id="myTable">
+	<thead>
+
+		<tr>
+			<th>Correta</th>
+			<th>Enunciado</th>
+			<th>Excluir</th>
+		</tr>
+
+	</thead>
+	<tbody>
+	
+	</tbody>
+	</table>
 			</div>
 			<a id="adicionarAlternativa" href="#" class="btn btn-success">+</a>
 			
@@ -99,8 +118,30 @@
 		},
 		addCampoAlternativa : function(count) {
 			
-			$("#conteinerAlternativas").append("("+count+")"+"<input  type='text' id='alt"+count+"' name='alt"+count+"' />");
+			var content = "<tr>";
+				
+				content += "<td>";
+				
+				content+="<input type='radio' name='correta' value='"+count+"'/>";
+				
+				content += "</td>";
+				
+				content += "<td>";
+				
+				content+="<textarea  id='alt"+count+"' name='alt"+count+"' ></textarea>";
+				
+				content += "</td>";
+				
+				content += "<td>";
+				
+				content +="<a href='#' class='deleteBtn' >Excluir</a>";
+				
+				content += "</td>";
+				
+				content += "<tr>";
 			
+			$('#myTable > tbody:last').append(content);
+			$("#count").val(count);
 		}
 
 	};
@@ -121,6 +162,15 @@
 			 var count = $("#conteinerAlternativas input").length+1;
 			ProvaController.addCampoAlternativa(count);
 		});
+		    $(document).on("click",".deleteBtn",function() {
+
+		        var tr = $(this).closest('tr');
+		        tr.remove();
+		       
+		        return false;
+		    });
+
+		
 
 	});
 </script>
