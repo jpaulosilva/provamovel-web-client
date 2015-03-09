@@ -1,0 +1,44 @@
+@main("Prova Móvel - Test Ajax") {
+
+@header()
+
+<div class="container">
+
+	<h1>Ajax</h1>
+	<div>
+	
+	<button id="ajaxbtn">Ajax</button>
+	</div>
+
+
+</div>
+<!-- /container -->
+
+<script>
+	$(function() {
+		alert("vai filho");
+		 
+	$('#ajaxbtn').click(function(){
+		var test = new Array();
+		test.put("a");
+		test.put("b");
+		var param = {"test":test};
+		alert("vai filho2");
+		var values = {
+			type : "POST",
+			dataType : "json",
+			url : "http://localhost:9000/ajax/ajax",
+			data : param,
+			success : function(v){
+				alert(JSON.stringify(v));
+			},
+			error : function(){
+				alert("cagada");
+			}
+		};
+				$.ajax(values);
+	});
+	});
+</script>
+
+}

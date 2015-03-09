@@ -39,5 +39,12 @@ GET     /meusresultados/:idprova                                   controllers.R
 GET     /prova/responder/:idprova                             controllers.RespostaController.responder(idprova:Integer)
 
 
+#Responder
+POST     /ajax/ajax                             controllers.Application.ajax()
+GET      /ajax/test                             controllers.Application.test()
+
+
+
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
