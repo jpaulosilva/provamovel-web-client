@@ -15,6 +15,7 @@ import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.formprovaquestao;
+import views.html.index;
 import views.html.listarprovas;
 
 public class ProvaController extends Controller {
@@ -61,7 +62,7 @@ public class ProvaController extends Controller {
 						if (values.get("alt" + i) != null) {
 							Alternativa a = new Alternativa();
 							a.setTitulo((String) values.get("alt" + i));
-							a.setIndice((long)i);
+							a.setIndice((long) i);
 							q.getAlternativas().add(a);
 
 						}
@@ -127,6 +128,24 @@ public class ProvaController extends Controller {
 			p.delete();
 		}
 		return redirect(routes.ProvaController.listar());
+	}
+
+	public static Result excluirQuestao(Long id) {
+		Questao q = Questao.find.byId(id);
+		User u = q.getProva().getAuthor();
+
+		if (u.getHash().equals(session("email"))) {
+			return ok(index.render("Restrição Tecnica", "Restrição Tecnica",
+					"Usuario sem permissão"));
+		} else {
+
+			if (q != null) {
+				q.delete();
+			}
+			System.out.println("o que?");
+			return redirect(routes.ProvaController.editar(q.getProva().getId()));
+
+		}
 	}
 
 	public static Result adicionarAluno(String email) {

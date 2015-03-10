@@ -25,7 +25,7 @@ public class Questao extends Model {
 	public static Finder<Long, Questao> find = new Finder<Long, Questao>(
 			Long.class, Questao.class);
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.DETACH)
 	Prova prova;
 
 	@Enumerated(value = EnumType.STRING)
