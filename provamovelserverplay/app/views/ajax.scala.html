@@ -19,13 +19,13 @@
 		alert("vai filho");
 		 
 	$('#ajaxbtn').click(function(){
-		var test = {a:1,b:2};
-		var param = {"test":test};
+		var test = {"A":"B","C":"D"};
+		var param = {"test":test,"B":"F"};
 		alert("vai filho2");
 		var values = {
 			type : "POST",
 			dataType : "json",
-			url : "http://localhost:9000/ajax/ajax",
+			url :"@routes.Application.ajax()",
 			data : param,
 			success : function(v){
 				alert(JSON.stringify(v));
