@@ -1,13 +1,11 @@
-@main("Prova Móvel - Test Ajax") {
-
-@header()
+@main("Prova Móvel - Test Ajax") { @header()
 
 <div class="container">
 
 	<h1>Ajax</h1>
 	<div>
-	
-	<button id="ajaxbtn">Ajax</button>
+
+		<button id="ajaxbtn">Ajax</button>
 	</div>
 
 
@@ -17,25 +15,42 @@
 <script>
 	$(function() {
 		alert("vai filho");
-		 
-	$('#ajaxbtn').click(function(){
-		var test = {a:1,b:2};
-		var param = {"test":test};
-		alert("vai filho2");
-		var values = {
-			type : "POST",
-			dataType : "json",
-			url : "http://localhost:9000/ajax/ajax",
-			data : param,
-			success : function(v){
-				alert(JSON.stringify(v));
-			},
-			error : function(){
-				alert("cagada");
-			}
-		};
-				$.ajax(values);
-	});
+
+		$('#ajaxbtn').click(function() {
+			var test = {
+				a : 1,
+				b : 2
+			};
+			var param = {
+				"name" : test
+			};
+			alert("vai filho2");
+
+			alert("@routes.Application.ajax");
+			var values = {
+				//data : '{"name":[1,2], "remark":"hello"}',
+				data : JSON.stringify(param),
+				dataType : "json",
+				contentType : "application/json",
+				type : "POST",
+				url : "@routes.Application.ajax",
+				success : function(v) {
+					alert(JSON.stringify(v));
+				},
+				error : function() {
+					alert("cagada");
+				}
+			};
+			$.ajax(values);
+
+			/*var listAction = {jsAction list(':search', ':size', ':page') /}
+					   $('#result').load(
+					       listAction({search: 'x', size: '10', page: '1'}), 
+					       function() {
+					           $('#content').css('visibility', 'visible')
+					       }
+					   )*/
+		});
 	});
 </script>
 
