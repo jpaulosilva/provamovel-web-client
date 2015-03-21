@@ -93,7 +93,7 @@ public class ProvaController extends Controller {
 		return ok(listarprovas.render(provaForm, provas));
 	}
 
-	public static Result visualizar(Integer id) {
+	public static Result visualizar(Long id) {
 		return TODO;
 	}
 
