@@ -3,7 +3,7 @@ LoginController = {
 	password : "",
 	hash : "",
 	init : function() {
-		// atribui ação ao botão de logar
+		// atribui aï¿½ï¿½o ao botï¿½o de logar
 		$(document).off("click", "#btnLogin").on("click", "#btnLogin",
 				LoginController.login);
 		// href="home.html"
@@ -21,6 +21,7 @@ LoginController = {
 		}
 	},
 	ajax : function(login, password) {
+		var param = {"login":login,"password":password};
 		var values = {
 			beforeSend : function() {
 				$.mobile.loading('show');
@@ -31,7 +32,7 @@ LoginController = {
 			type : "POST",
 			dataType : "json",
 			url : Values.server + "mobile/login/",
-			data : "login=" + login + "&password=" + password,
+			data : JSON.stringify(param),
 			success : LoginController.onSuccess,
 			error : LoginController.onError
 		};
@@ -55,7 +56,7 @@ LoginController = {
 
 	},
 	onError : function(e) {
-		alert("Houve um erro na comunicação com servidor");
+		alert("Houve um erro na comunicaï¿½ï¿½o com servidor");
 	},
 	validate : function() {
 		if (LoginController.login === "") {

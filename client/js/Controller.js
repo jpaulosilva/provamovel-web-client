@@ -58,8 +58,9 @@ Controller = function(urlRequest,linkClass,param,attr) {
 	    complete: function() { $.mobile.loading( 'hide'); }, //Hide spinner
 			type : "GET",
 			dataType : "json",
+			contentType : "application/json",
 			url : Values.server  + urlFinal,
-			data : param,
+			data : JSON.stringify(param),
 			success : onSuccess,
 			error : onError
 		};
