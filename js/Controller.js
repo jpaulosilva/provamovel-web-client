@@ -56,7 +56,7 @@ Controller = function(urlRequest,linkClass,param,attr) {
 		var values = {
 		beforeSend: function() { $.mobile.loading( 'show'); }, //Show spinner
 	    complete: function() { $.mobile.loading( 'hide'); }, //Hide spinner
-			type : "POST",
+			type : "GET",
 			dataType : "json",
 			url : Values.server  + urlFinal,
 			data : param,

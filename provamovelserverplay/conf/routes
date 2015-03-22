@@ -44,7 +44,8 @@ POST     /ajax/ajax                             controllers.Application.ajax()
 GET      /ajax/test                             controllers.Application.test()
 
 #Mobile JSON
-GET     /mobile/prova/                         controllers.MobileController.getProvas()
+POST    /mobile/login/                         controllers.MobileController.login()
+GET     /mobile/prova                         controllers.MobileController.getProvas()
 GET     /mobile/prova/:id                      controllers.MobileController.getProva(id:Long)
 
 # Map static resources from the /public folder to the /assets URL path

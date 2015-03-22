@@ -6,7 +6,7 @@
 
 var Values = {
 
-	server : "serverrest/",
+	server : "http://localhost:9000/",
 	appTitle : "Prova Móvel",
 	appTitleProva : "Prova Disponíveis",
 	appTitleAbout : "Prova Móvel - Sobre",

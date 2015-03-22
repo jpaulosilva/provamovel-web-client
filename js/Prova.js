@@ -1,4 +1,4 @@
-ProvaController = new Controller("prova", "linkProva", "", "attrid");
+ProvaController = new Controller("mobile/prova", "linkProva", "", "attrid");
 
 ProvaController.QuestaoSelecionadaIndex = 0;
 
@@ -30,7 +30,7 @@ ProvaController.setShowItem(function(item) {
 	$('#tableDadosProva tbody  tr:last td:eq(0)').html(item.titulo);
 	$('#tableDadosProva tbody tr:last td:eq(1)').html(item.autor);
 	$('#tableDadosProva tbody tr:last td:eq(2)').html(item.data);
-	$('#tableDadosProva tbody tr:last td:eq(3)').html(item.questoes.length);
+	$('#tableDadosProva tbody tr:last td:eq(3)').html(item.questoes);
 	ProvaExecucaoController.provaSelecionada = item;
 	$('#iniciarprova').trigger('create');
 	$( "#tableDadosProva" ).table( "rebuild" );

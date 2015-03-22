@@ -30,7 +30,7 @@ LoginController = {
 			}, // Hide spinner
 			type : "POST",
 			dataType : "json",
-			url : Values.server + "login/",
+			url : Values.server + "mobile/login/",
 			data : "login=" + login + "&password=" + password,
 			success : LoginController.onSuccess,
 			error : LoginController.onError
@@ -41,7 +41,7 @@ LoginController = {
 	onSuccess : function(response) {
 		// alert(JSON.stringify(response));
 		// se login for autorizado
-		if (response['error'] === 0) {
+		if (response['error'] === "0") {
 			LoginController.hash = response['hash'];
 			// vai pra proxima pagina
 			$.mobile.changePage("home.html", {

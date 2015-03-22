@@ -31,8 +31,8 @@ public class UserController extends Controller {
 					form.reject("password","Senha Inválida");
 					return badRequest(entrar.render(form));	
 				}else{
-					Date d = new Date();
-					userLogin.setHash("1234567abc"+d.toString().replace(" ", "")+"defghij89321");
+					
+					userLogin.setHash(UtilPassword.generateHash(userLogin));
 					userLogin.update();
 					
 					session("login",userLogin.getEmail());
