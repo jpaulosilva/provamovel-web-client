@@ -90,7 +90,9 @@ public class MobileController extends Controller {
 			Map<String, Object> questao = new HashMap<String, Object>();
 			questao.put("titulo", q.getTitulo());
 			questao.put("tipo", q.getTipo().toString());
+			
 			if (q.getTipo() == TipoQuestao.fechada) {
+				questao.put("gabarito", q.getCorretaIndex());
 				List<Map<String, String>> alternativas = new ArrayList<Map<String, String>>();
 
 				for (Alternativa a : q.getAlternativas()) {
@@ -99,6 +101,8 @@ public class MobileController extends Controller {
 					alternativas.add(alternativa);
 				}
 				questao.put("alternativas", alternativas);
+			}else{
+				questao.put("gabarito", q.getRespostaAberta());
 			}
 			questoes.add(questao);
 		}
