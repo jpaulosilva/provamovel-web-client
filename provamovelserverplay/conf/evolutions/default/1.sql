@@ -21,7 +21,7 @@ create table prova (
 
 create table questao (
   id                        bigint auto_increment not null,
-  titulo                    varchar(255),
+  titulo                    TEXT,
   resposta_aberta           varchar(255),
   correta_index             bigint,
   prova_id                  bigint,

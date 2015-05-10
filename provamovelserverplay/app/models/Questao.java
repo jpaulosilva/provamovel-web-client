@@ -3,6 +3,7 @@ package models;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -18,6 +19,7 @@ import play.db.ebean.Model.Finder;
 public class Questao extends Model {
 	@Id
 	Long id;
+	@Column(columnDefinition="TEXT")
 	String titulo;
 	String respostaAberta;
 	Long corretaIndex;
