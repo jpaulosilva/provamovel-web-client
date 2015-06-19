@@ -3,8 +3,8 @@
 class Conexao{
 public $host = "localhost";
 public $user = "root";
-public $password = "root";
-public $database = "cadastro_pdo";
+public $password = "";
+public $database = "provamovel";
 public $conn = null;
 
 public function connect (){
