@@ -16,3 +16,7 @@ CREATE TABLE IF NOT EXISTS `tb_endereco` (
   `rua` varchar(255) NOT NULL,
   PRIMARY KEY (`cep`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+ALTER TABLE `tb_usuario` ADD `facebook_id` VARCHAR(255) NULL AFTER `id`;
+
+ALTER TABLE `tb_usuario` CHANGE `senha` `senha` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL, CHANGE `cep` `cep` VARCHAR(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL;
