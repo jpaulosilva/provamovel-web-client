@@ -1,13 +1,11 @@
 <?php
 include("lib/nusoap.php");
-$client = new soapclient("http://localhost/workspace/nusoap-0.9.5/server3.php?wsdl");
+$client = new soapclient("http://localhost/workspace/projetows/provamovel-web-client/server/serversoap/server.php?wsdl");
+
 
 $functions = $client->__getFunctions ();
 var_dump ($functions);
-$result    =    $client->hello();
-echo "<pre>";
-print_r($result);
-echo "</pre>";
 
-
+$result    =    $client->cadastrar("ivan@gmail.com","123456","52011270");
+print_r ($result);
 ?>

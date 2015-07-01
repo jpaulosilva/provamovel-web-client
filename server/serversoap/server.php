@@ -1,15 +1,14 @@
 <?php
 require_once("lib/nusoap.php");
 include ("../app/Conexao.php");
-//using soap_server to create server object
+
 $server    = new soap_server;
 $server->configureWSDL('provamovel');
 
-//register a function that works on server
+
 $server->register("login",array("email" => "xsd:string","senha" => "xsd:string"),array("return" => "xsd:string"),"urn:provamovel");
 
 $server->register("cadastrar",array("email" => "xsd:string","senha" => "xsd:string","cep" => "xsd:string"),array("return" => "xsd:string"),"urn:provamovel");
-
 
 function login($email,$senha)
 {
@@ -56,13 +55,33 @@ function cadastrar($email,$senha,$cep)
 			$con->connect();
             $con->exec($cmd);
 			$con->desconnect();
+			
+			$retorno = getEndereco($cep);
+			
+			$cmd2 = "insert into tb_endereco (cep,rua,cidade,estado)  values('".$cep."','".$retorno->logradouro."','".$retorno->cidade."','".$retorno->uf."')";
+			$con->connect();
+            $con->exec($cmd2);
+			$con->desconnect();
+			
        return $token;
 }catch(PDOException $e){
 			echo $e->getMessage();
 	}
     return "error";
 }
-// create HTTP listener
+
+
+function getEndereco($numcep){
+$client = new soapclient("http://cep.paicon.com.br/ws/cep.asmx?WSDL");
+
+$consultar = array("cep"=>$numcep);
+
+$result    =    $client->Consultar($consultar);
+
+
+return $result->ConsultarResult;
+}
+
 $HTTP_RAW_POST_DATA = isset($HTTP_RAW_POST_DATA) ? $HTTP_RAW_POST_DATA : '';
 $server->service($HTTP_RAW_POST_DATA);
 
