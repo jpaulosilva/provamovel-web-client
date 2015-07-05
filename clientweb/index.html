@@ -23,6 +23,7 @@
 			<h3 class="html-from-values" appid="appTitle"></h3>
 		</div>
 		<div role="main" class="ui-content">
+		<form method="GET" action="handler.php">
 		<label for="email" class="ui-hidden-accessible">E-mail</label>
 				<input type="email" name="textEmail" id="textEmail" value=""
 					placeholder="E-mail">
@@ -31,11 +32,12 @@
 				<input type="password" name="textPassword" id="textPassword" value=""
 					placeholder="Senha">
 		
-		<button id="btnLogin" data-icon="check" class="ui-btn ui-corner-all" data-iconpos="right">Entrar </button>
+		<input type="submit"  data-icon="check" class="ui-btn ui-corner-all" data-iconpos="right" name="submit" value="Entrar"></input>
+		</form>
+		<h1>OU Faça login pelo facebook: <fb:login-button scope="public_profile,email"  onlogin="checkLoginState();">
+        </fb:login-button></h1>
 		
-		<h1>OU</h1>
 		
-		<div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false"></div>
 		</div>
 		<div data-role="footer" data-position="fixed"
 			class="html-from-snippet-array" snippet="snippet-footer"></div>
