@@ -1,3 +1,6 @@
+create database provamovel;
+
+use provamovel;
 
 CREATE TABLE IF NOT EXISTS `tb_usuario` (
   `id` int(11) NOT NULL,
@@ -5,7 +8,7 @@ CREATE TABLE IF NOT EXISTS `tb_usuario` (
   `senha` varchar(255) NOT NULL,
   `cep` varchar(255) NOT NULL,
   `token` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
 
