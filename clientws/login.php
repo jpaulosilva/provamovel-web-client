@@ -27,7 +27,7 @@
 		</h1>
 		
 		<form method="GET" action="handler.php">
-		<input type="text" name="operacao" value="loginFacebook"/>
+		<input type="hidden" name="operacao" value="loginFacebook"/>
 		<label for="email" >Access Token</label>
 				<input type="text" name="accesstoken" id="accesstoken" value="" />
 					
