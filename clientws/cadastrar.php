@@ -30,7 +30,7 @@
 		</h1>
 		
 		<form method="GET" action="handler.php">
-		<input type="hidden" name="operacao" value="cadastroFacebook"/>
+		<input type="text" name="operacao" value="cadastroFacebook"/>
 		<label for="email" >Access Token</label>
 				<input type="text" name="accesstoken" id="accesstoken" value="" />
 					
