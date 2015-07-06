@@ -2,8 +2,8 @@
 
 class Conexao{
 public $host = "localhost";
-public $user = "root";
-public $password = "";
+public $user = "dbuser";
+public $password = "know100188";
 public $database = "provamovel";
 public $conn = null;
 

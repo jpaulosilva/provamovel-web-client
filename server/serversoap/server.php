@@ -12,7 +12,7 @@ $server->register("cadastrar",array("email" => "xsd:string","senha" => "xsd:stri
 
 function login($email,$senha)
 {
-    try{
+    try{                                                                                                
 	
 	$con = new Conexao();
        
@@ -30,14 +30,14 @@ function login($email,$senha)
         
 			$con->desconnect();
         if (count($array) == 1)
-            return $array[0]['token'];
+            return   "{'token':'".$array[0]['token']."',error:0}";
         else
-            return "error";
+            return "{'error':'1','message':'User not found','sql':'$sql'}";
        
 }catch(PDOException $e){
-			echo $e->getMessage();
+			 return "{'error':'1','message':'".$e->getMessage()."'}";
 	}
-    return "error";
+    
 }
 
 function cadastrar($email,$senha,$cep)
@@ -63,11 +63,12 @@ function cadastrar($email,$senha,$cep)
             $con->exec($cmd2);
 			$con->desconnect();
 			
-       return $token;
+       return "{'token':'$token',error:0}";
+       
 }catch(PDOException $e){
-			echo $e->getMessage();
+			 return "{'error':'1','message':'".$e->getMessage()."'}";
 	}
-    return "error";
+   
 }
 
 
