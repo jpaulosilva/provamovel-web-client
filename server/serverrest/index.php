@@ -12,9 +12,10 @@ $app->get ( '/cadastro/facebook/:accessToken', 'cadastroFacebook' );
 
 $app->run ();
 function getQuestao() {
-	$retorno = array ("error"=>"teste");
-	
-	echo json_encode ( $retorno );
+    
+     $url = 'http://ivanknow.koding.io/workspace/projetows/server/serverrest/questao.json';
+
+    echo file_get_contents($url);
 }
 
 function loginFacebook($accessToken) {

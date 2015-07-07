@@ -11,5 +11,6 @@
 	
 	<a href="login.php">Testar Login</p>
 	<a href="cadastrar.php">Testar Cadastrar</p>
+	<a href="questao.php">Testar Get Questoes</p>
 </body>
 </html>
