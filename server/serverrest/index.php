@@ -64,36 +64,27 @@ $email = $teste->email;
 			
 			
 			
-       echo "{'sucesso':'true','accesstoken':'".$accessToken."'}";
+        echo json_encode(array('error'=>'0','token'=>$accessToken,'email'=>$email));
+       
+       
 }catch(PDOException $e){
-			echo "{'sucesso':'false', 'mensagem':'".$e->getMessage()."'}";
+			echo json_encode(array('error'=>'1','mensagem'=>$e->getMessage()));
 	}
-            
-            
-            
-            echo $array[0]['token'];
+
             
         }
-        else
-            echo "{'sucesso':'false'}";
-         
+        else{
+             echo json_encode(array('error'=>'1','mensagem'=>'Usuario não encontrado'));
+        }
        
 }catch(PDOException $e){
 			
          
-         echo "{'sucesso':'false', 'mensagem':'".$e->getMessage()."'}";
+          echo json_encode(array('error'=>'1','mensagem'=>$e->getMessage()));
 	}
     
     
     
-    
-    
-    
-    
-    
-	/*$retorno = array ("error"=>"TODO");
-	
-	echo json_encode ( $retorno );*/
 }
 
 function cadastroFacebook($accessToken) {
@@ -123,9 +114,10 @@ $email = $teste->email;
 			
 			
 			
-       echo "{'sucesso':'true','accesstoken':'".$accessToken."'}";
+       echo json_encode(array('error'=>'0','token'=>$accessToken,'email'=>$email));
 }catch(PDOException $e){
-			 echo "{'sucesso':'false', 'mensagem':'".$e->getMessage()."'}";
+	    
+	    echo json_encode(array('error'=>'1','mensagem'=>$e->getMessage()));
 	}
     
     

@@ -25,12 +25,12 @@
 		
 		
 		<h1>
-		OU Faça login pelo facebook: 
-		<fb:login-button scope="public_profile,email,location"  onlogin="checkLoginState();"> </fb:login-button>
+		OU Faça cadastro pelo facebook: 
+		<fb:login-button scope="public_profile,email"  onlogin="checkLoginState();"> </fb:login-button>
 		</h1>
 		
 		<form method="GET" action="handler.php">
-		<input type="text" name="operacao" value="cadastroFacebook"/>
+		<input type="text" name="operacao" value="cadastrofacebook"/>
 		<label for="email" >Access Token</label>
 				<input type="text" name="accesstoken" id="accesstoken" value="" />
 					

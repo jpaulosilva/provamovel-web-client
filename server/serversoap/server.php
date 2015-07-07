@@ -30,12 +30,12 @@ function login($email,$senha)
         
 			$con->desconnect();
         if (count($array) == 1)
-            return   "{'token':'".$array[0]['token']."',error:0}";
+              return json_encode(array("token"=>$array[0]['token'],"error"=>'0',"email"=>$email));
         else
-            return "{'error':'1','message':'User not found','sql':'$sql'}";
+            return  json_encode(array("error"=>"1","message"=>"Usuario nao encontrado",'sql'=>$sql));
        
 }catch(PDOException $e){
-			 return "{'error':'1','message':'".$e->getMessage()."'}";
+			return  json_encode(array("error"=>"1","message"=>$e->getMessage()));
 	}
     
 }
@@ -63,10 +63,10 @@ function cadastrar($email,$senha,$cep)
             $con->exec($cmd2);
 			$con->desconnect();
 			
-       return "{'token':'$token',error:0}";
+       return json_encode(array("token"=>$token,"error"=>'0'));
        
 }catch(PDOException $e){
-			 return "{'error':'1','message':'".$e->getMessage()."'}";
+			 return  json_encode(array("error"=>"1","message"=>$e->getMessage()));
 	}
    
 }
